@@ -8,7 +8,7 @@ export default function ListadoPeliculas(props: listadoPeliculasprops) {
   return (
     <ListadoGenerico listado={peliculas}>
       <>
-      <a className="text-amber-50" href="/pelicula/create">Crear Película</a>
+      <a className="text-amber-50" href="/peliculas/create">Crear Película</a>
         <div className="flex flex-lg-wrap flex-row align-items-center ">
           {peliculas?.map((pelicula) => (
             <PeliculaIndividual pelicula={pelicula} key={pelicula.id} />

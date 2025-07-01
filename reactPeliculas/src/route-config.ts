@@ -11,30 +11,35 @@ import CreateCines from "./Cines/CreateCine";
 import CreatePelicula from "./Peliculas/CreatePelicula";
 import UpdatePelicula from "./Peliculas/UpdatePelicula";
 import SearchPeliculas from "./Peliculas/SearchPeliculas";
+import RedirectionLandinPage from "./Utils/RedirectionLandinPage";
 
 const rutas = [
   /*Rutas genero*/
   { path: "/generos/create", element: CreateGenero },
-  { path: "/generos/update", element: UpdateGenero },
+  { path: "/generos/update/:id(\\d+)", element: UpdateGenero },
   { path: "/generos", element: IndiceGeneros },
 
   /*Rutas actores*/
   { path: "/actores", element: IndexActores },
   { path: "/actores/create", element: CreateActores },
-  { path: "/actores/update", element: UpdateActores },
+  { path: "/actores/update/:id(\\d+)", element: UpdateActores },
 
   /*Rutas cines*/
   { path: "/cines", element: IndexCines },
   { path: "/cines/create", element: CreateCines },
-  { path: "/cines/update", element: UpdateCines },
+  { path: "/cines/update/:id(\\d+)", element: UpdateCines },
 
-   /*Rutas peliculas*/
-  { path: "/create/pelicula", element: CreatePelicula },
-  { path: "/update/pelicula", element: UpdatePelicula },
-  { path: "/search/pelicula", element: SearchPeliculas },
+  /*Rutas peliculas*/
+  { path: "peliculas/create", element: CreatePelicula },
+  { path: "peliculas/update/:id(\\d+)", element: UpdatePelicula },
+  { path: "peliculas/search", element: SearchPeliculas },
 
-    /*Ruta home*/
+  /*Ruta home*/
   { path: "/", element: LandingPage },
-];
+  /* Redireccion Error 404*/
+  { path: "*", element: RedirectionLandinPage },
+  
+
+]
 
 export default rutas;
