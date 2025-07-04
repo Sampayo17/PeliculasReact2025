@@ -1,14 +1,18 @@
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
+import GenericForm from "../Utils/GenericForm";
 
 export default function UpdateGenero() {
-
-  const {id}: any = useParams();
+  // const { id }: any = useParams();
   return (
     <>
-        <h3 className='text-amber-50'>Editar Género</h3>
-        <p className='text-amber-50'>ID del género: {id}</p>  
-
+      <h3 className="text-amber-50">Editar Género</h3>
+      <GenericForm
+        model={{ nombre: "Peleas" }}
+        onSubmit={async (model) => {
+          await new Promise((r) => setTimeout(r, 3000));
+          console.log(model.nombre);
+        }}
+      />
     </>
-
-  )
+  );
 }
