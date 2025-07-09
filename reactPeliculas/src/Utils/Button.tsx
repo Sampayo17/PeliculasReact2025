@@ -1,16 +1,12 @@
 export default function Button(props: ButtonProps) {
-  const { children, onClick, type, disabled } = props;
+  const { children, onClick, type, disabled, className } = props;
   return (
     <div>
       <button
         disabled={disabled}
         type={type}
         onClick={onClick}
-        className={
-          disabled === false
-            ? "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
-            : "bg-gray-500 text-white px-4 py-2 rounded"
-        }
+        className={className}
       >
         {children}
       </button>
@@ -23,6 +19,7 @@ interface ButtonProps {
   onClick?: () => void;
   type: "button" | "submit";
   disabled?: boolean;
+  className?: string;
 }
 
 Button.defaultProps = {

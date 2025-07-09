@@ -38,14 +38,13 @@ export default function Menu() {
 
           <NavLink
             className="text-gray-200 text-2 max-sm:text-[10px]  text-center  tracking-wide hover:text-blue-300 hover:scale-110 transition-all duration-200"
-            to="/search/pelicula"
+            to="/peliculas/search"
           >
             {" "}
             Buscar Peliculas{" "}
           </NavLink>
         </div>
       </nav>
-      <Outlet />
     </>
   );
 }

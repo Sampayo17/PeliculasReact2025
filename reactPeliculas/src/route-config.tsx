@@ -13,37 +13,37 @@ import UpdatePelicula from "./Peliculas/UpdatePelicula";
 import SearchPeliculas from "./Peliculas/SearchPeliculas";
 import RedirectionLandinPage from "./Utils/RedirectionLandinPage";
 import { createBrowserRouter } from "react-router-dom";
-import Menu from "./Utils/Menu";
+
+import MainLayout from "./MainLayout";
 
 const rutas = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Menu />, // Componente principal que contiene el layout
+      element: <MainLayout />, // Componente principal que contiene el layout
       children: [
-        /*Rutas de peliculas*/
         /*Rutas genero*/
-        { path: "/generos/create", element: <CreateGenero /> },
-        { path: "generos/update/:id(\\d+)", element: <UpdateGenero /> },
-        { path: "/generos", element: <IndiceGeneros /> },
+        { path: "generos/create", element: <CreateGenero /> },
+        { path: "/generos/update/:id", element: <UpdateGenero /> },
+        { path: "generos", element: <IndiceGeneros /> },
 
         /*Rutas actores*/
-        { path: "/actores", element: <IndexActores /> },
-        { path: "/actores/create", element: <CreateActores /> },
-        { path: "/actores/update/:id(\\d+)", element: <UpdateActores /> },
+        { path: "actores", element: <IndexActores /> },
+        { path: "actores/create", element: <CreateActores /> },
+        { path: "actores/update/:id", element: <UpdateActores /> },
 
         /*Rutas cines*/
-        { path: "/cines", element: <IndexCines /> },
-        { path: "/cines/create", element: <CreateCines /> },
-        { path: "/cines/update/:id(\\d+)", element: <UpdateCines /> },
+        { path: "cines", element: <IndexCines /> },
+        { path: "cines/create", element: <CreateCines /> },
+        { path: "cines/update/:id", element: <UpdateCines /> },
 
         /*Rutas peliculas*/
         { path: "peliculas/create", element: <CreatePelicula /> },
-        { path: "peliculas/update/:id(\\d+)", element: <UpdatePelicula /> },
+        { path: "peliculas/update/:id", element: <UpdatePelicula /> },
         { path: "peliculas/search", element: <SearchPeliculas /> },
 
         /*Ruta home*/
-        { path: "/", element: <LandingPage /> },
+        { path: "", element: <LandingPage /> },
         /* Redireccion Error 404*/
         { path: "*", element: <RedirectionLandinPage /> },
       ],
