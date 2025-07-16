@@ -88,7 +88,7 @@ export default function SearchPeliculas() {
 
               <Button
                 onClick={() => formikProps.submitForm()}
-                type="submit"
+                type="button"
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
               >
                 Filtra

@@ -1,12 +1,15 @@
-import Button from "../Utils/Button";
-import { useNavigate } from "react-router-dom";
+import ActorForm from "./ActorForm";
 export default function CreateActores() {
-  const navigate = useNavigate();
   return (
     <>
-      <h3 className='text-amber-50'>Crear Actor</h3>
-      <Button onClick={() => navigate('/actores')}>Salvar</Button>
-
+      <h3 className="text-amber-50">Crear Actor</h3>
+      <ActorForm
+        model={{
+          nombre: "",
+          fechaNacimiento: undefined,
+        }}
+        onSubmit={(valores) => console.log(valores)}
+      />
     </>
-  )
+  );
 }
