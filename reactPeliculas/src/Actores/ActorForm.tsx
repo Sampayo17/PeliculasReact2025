@@ -5,6 +5,7 @@ import FormGroupText from "../Utils/FormGroupText";
 import Button from "../Utils/Button";
 import * as Yup from "yup";
 import FormGroupDate from "../Utils/FormGroupDate";
+import FormGroupImg from "../Utils/FormGroupImg";
 
 export default function ActorForm(props: actorFormProps) {
   const { model, onSubmit } = props;
@@ -23,6 +24,7 @@ export default function ActorForm(props: actorFormProps) {
         <Form className="flex flex-col pt-2 text-amber-50">
           <FormGroupText campo="nombre" label="Nombre" />
           <FormGroupDate campo="fechaNacimiento" label="Fecha Nacimiento" />
+          <FormGroupImg campo="imagen" label="Imagen" imgUrl={model.imgURL} />
 
           <div className="flex pt-2">
             <Button
