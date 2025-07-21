@@ -1,12 +1,27 @@
 import { Form, Formik, type FormikHelpers } from "formik";
 import type { createCineDTO } from "./cines.model";
 import * as Yup from "yup";
-import FormGroupText from "../Utils/FormGroupText";
+import FormGroupText from "../Utils/Forms/FormGroupText";
 import { Link } from "react-router-dom";
 import Button from "../Utils/Button";
+import FormMap from "../Utils/Forms/FormMap";
+import type { coordenadaDTO } from "../Utils/models/Coordenada.model";
 
 export default function CineForm(props: cineFormprops) {
   const { model, onSubmit } = props;
+
+  function transCoordernadas(): coordenadaDTO[] | undefined {
+    if (model.lat && model.long) {
+      const response: coordenadaDTO = {
+        latitud: model.lat,
+        longitud: model.long,
+      };
+      return [response];
+    }
+
+    return undefined;
+  }
+
   return (
     <Formik
       initialValues={model}
@@ -20,6 +35,14 @@ export default function CineForm(props: cineFormprops) {
       {(formikProps) => (
         <Form className="flex flex-col pt-2 text-amber-50">
           <FormGroupText campo="nombre" label="Nombre" />
+          <div className="my-10">
+            <FormMap
+              campoLat="latitud"
+              campoLon="longitud"
+              coordenadasValue={transCoordernadas()}
+            />
+          </div>
+
           <div className="flex pt-2">
             <Button
               typeBtn="Success"

@@ -1,5 +1,5 @@
 import { ErrorMessage, Field } from "formik";
-import ShowErrorMessage from "./ShowErrorMessage";
+import ShowErrorMessage from "../ShowErrorMessage";
 
 export default function FormGroupText(props: formGroupTextprops) {
   const { campo, label } = props;

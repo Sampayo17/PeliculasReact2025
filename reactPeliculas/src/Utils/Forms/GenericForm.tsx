@@ -1,9 +1,9 @@
 import { Form, Formik, type FormikHelpers } from "formik";
 import FormGroupText from "./FormGroupText";
-import Button from "./Button";
+import Button from "../Button";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import type { GeneroCreacionDTO } from "../Generos/generos.model";
+import type { GeneroCreacionDTO } from "../../Generos/generos.model";
 
 export default function GenericForm(props: formGroupTextprops) {
   const { model, onSubmit } = props;

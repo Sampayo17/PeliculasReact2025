@@ -1,12 +1,12 @@
 import { Form, Formik, type FormikHelpers } from "formik";
 import type { actoresCreationDTO } from "./actores.model";
 import { Link } from "react-router-dom";
-import FormGroupText from "../Utils/FormGroupText";
+import FormGroupText from "../Utils/Forms/FormGroupText";
 import Button from "../Utils/Button";
 import * as Yup from "yup";
-import FormGroupDate from "../Utils/FormGroupDate";
-import FormGroupImg from "../Utils/FormGroupImg";
-import FormGruopMarkDown from "../Utils/FormGruopMarkDown";
+import FormGroupDate from "../Utils/Forms/FormGroupDate";
+import FormGroupImg from "../Utils/Forms/FormGroupImg";
+import FormGruopMarkDown from "../Utils/Forms/FormGruopMarkDown";
 
 export default function ActorForm(props: actorFormProps) {
   const { model, onSubmit } = props;

@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import ShowErrorMessage from "./ShowErrorMessage";
+import ShowErrorMessage from "../ShowErrorMessage";
 
 export default function FormGroupDate(props: formGroupDateprops) {
   const { campo, label } = props;

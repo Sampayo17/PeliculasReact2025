@@ -1,5 +1,5 @@
 import { Form, Formik, type FormikHelpers } from "formik";
-import FormGroupText from "../Utils/FormGroupText";
+import FormGroupText from "../Utils/Forms/FormGroupText";
 import Button from "../Utils/Button";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";

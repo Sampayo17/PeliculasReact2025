@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import GenericForm from "../Utils/GenericForm";
+import GenericForm from "../Utils/Forms/GenericForm";
 
 export default function UpdateGenero() {
   const { id }: any = useParams();
