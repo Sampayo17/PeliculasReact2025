@@ -7,14 +7,35 @@ import FormGroupCheckBox from "../Utils/Forms/FormGroupCheckBox";
 import FormGroupDate from "../Utils/Forms/FormGroupDate";
 import FormGroupImg from "../Utils/Forms/FormGroupImg";
 import Button from "../Utils/Button";
+import MultiSelector, { type multiSelectorModel } from "../Utils/MultiSelector";
+import type { generoDTO } from "../Generos/generos.model";
+import { useState } from "react";
 
 export default function PeliculasForm(props: peliculasFormprops) {
-  const { model, onSubmit } = props;
+  const { model, onSubmit, generoNoSeleccionado, generoSeleccionado } = props;
+
+  const [selectGenero, setSelectGenero] = useState(maping(generoSeleccionado));
+
+  const [noSelectGenero, setNoSelectGenero] = useState(
+    maping(generoNoSeleccionado)
+  );
+
+  function maping(
+    arreglo: { id: number; nombre: string }[]
+  ): multiSelectorModel[] {
+    return arreglo.map((valor) => {
+      return { llave: valor.id, valor: valor.nombre };
+    });
+  }
+
   return (
     <>
       <Formik
         initialValues={model}
-        onSubmit={onSubmit}
+        onSubmit={(valores, acciones) => {
+          valores.generosIds = generoSeleccionado.map((valor) => valor.id);
+          onSubmit(valores, acciones);
+        }}
         validationSchema={Yup.object({
           titulo: Yup.string()
             .required("Este campo es requerido")
@@ -34,6 +55,15 @@ export default function PeliculasForm(props: peliculasFormprops) {
               campo="poster"
               label="Poster"
               imgUrl={model.posterURL}
+            />
+
+            <MultiSelector
+              seleccionados={selectGenero}
+              noSeleccionados={noSelectGenero}
+              onChange={(seleccionados, noSeleccionados) => {
+                setSelectGenero(seleccionados);
+                setNoSelectGenero(noSeleccionados);
+              }}
             />
 
             <div className="flex pt-2">
@@ -64,4 +94,7 @@ interface peliculasFormprops {
     values: peliculaCreationDTO,
     actions: FormikHelpers<peliculaCreationDTO>
   ): void;
+
+  generoSeleccionado: generoDTO[];
+  generoNoSeleccionado: generoDTO[];
 }

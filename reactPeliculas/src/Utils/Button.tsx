@@ -11,7 +11,7 @@ export default function Button(props: ButtonProps) {
         "bg-green-500 text-white ml-3 px-4 py-2 rounded hover:bg-green-700 transition duration-200";
     } else if (typeBtn === "Info") {
       test =
-        "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200";
+        "bg-blue-500 text-white px-4 py-2 m-2 rounded hover:bg-blue-700 transition duration-200";
     }
 
     return test;

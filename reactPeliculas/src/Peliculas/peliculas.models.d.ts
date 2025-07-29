@@ -11,6 +11,7 @@ export interface peliculaCreationDTO {
   fechaLanzamiento?: Date;
   poster?: File;
   posterURL?: string;
+  generosIds?: number[];
 }
 
 export interface LandingPageDTO {
