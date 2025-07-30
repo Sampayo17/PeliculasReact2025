@@ -3,7 +3,7 @@ import PeliculasForm from "./PeliculasForm";
 export default function UpdatePelicula() {
   const generoSelect: generoDTO[] = [
     { id: 1, nombre: "accion" },
-    { id: 2, nombre: "anime" },
+    { id: 1, nombre: "anime" },
   ];
 
   const generoNoSelect: generoDTO[] = [{ id: 1, nombre: "accion" }];

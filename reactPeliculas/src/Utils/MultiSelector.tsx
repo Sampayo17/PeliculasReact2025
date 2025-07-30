@@ -4,14 +4,14 @@ export default function MultiSelector(props: multiSelectorprosp) {
   const { seleccionados, noSeleccionados, onChange } = props;
 
   function selection(item: multiSelectorModel) {
-    const select = [...seleccionados, item];
-    const noSelect = noSeleccionados.filter((value) => value !== item);
+    const select = seleccionados.filter((value) => value !== item);
+    const noSelect = [...noSeleccionados, item];
     onChange(select, noSelect);
   }
 
   function deselection(item: multiSelectorModel) {
-    const noSelect = [...noSeleccionados, item];
-    const select = seleccionados.filter((value) => value !== item);
+    const select = [...seleccionados, item];
+    const noSelect = noSeleccionados.filter((value) => value !== item);
     onChange(select, noSelect);
   }
 
@@ -29,10 +29,10 @@ export default function MultiSelector(props: multiSelectorprosp) {
   return (
     <>
       <div className="flex">
-        <ul className=" bg-amber-50 rounded text-black m-2 p-2 h-45 w-25 outline-2 outline-offset-2 outline-blue-500">
+        <ul className=" bg-amber-50 rounded text-black m-2  h-45 w-25 outline-2 outline-offset-2 outline-blue-500">
           {seleccionados.map((item) => (
             <li
-              className="pointer-events-auto size-3.5 py-0.5 px-2.5 hover:bg-amber-900"
+              className="h-auto w-auto text-center size-3.5  hover:bg-cyan-700  hover:text-amber-50"
               key={item.valor}
               onClick={() => selection(item)}
             >
@@ -48,9 +48,13 @@ export default function MultiSelector(props: multiSelectorprosp) {
             {">>"}
           </Button>
         </div>
-        <ul className=" bg-amber-50 rounded text-black m-2 p-2 h-45 w-25 outline-2 outline-offset-2 outline-blue-500">
+        <ul className=" bg-amber-50 rounded text-black m-2 h-45 w-25 outline-2 outline-offset-2 outline-blue-500">
           {noSeleccionados.map((item) => (
-            <li key={item.valor} onClick={() => deselection(item)}>
+            <li
+              className="h-auto w-auto text-center size-3.5  hover:bg-cyan-700 hover:text-amber-50"
+              key={item.valor}
+              onClick={() => deselection(item)}
+            >
               {item.valor}
             </li>
           ))}
@@ -60,11 +64,6 @@ export default function MultiSelector(props: multiSelectorprosp) {
   );
 }
 
-export interface multiSelectorModel {
-  llave: number;
-  valor: string;
-}
-
 interface multiSelectorprosp {
   seleccionados: multiSelectorModel[];
   noSeleccionados: multiSelectorModel[];
@@ -72,4 +71,9 @@ interface multiSelectorprosp {
     seleccionados: multiSelectorModel[],
     noSeleccionados: multiSelectorModel[]
   ): void;
+}
+
+export interface multiSelectorModel {
+  llave: number;
+  valor: string;
 }
