@@ -10,15 +10,33 @@ import Button from "../Utils/Button";
 import MultiSelector, { type multiSelectorModel } from "../Utils/MultiSelector";
 import type { generoDTO } from "../Generos/generos.model";
 import { useState } from "react";
+import type { cineDTO } from "../Cines/cines.model";
+import TypeAheadActores from "../Actores/TypeAheadActores";
+import type { actorPeliculaDTO } from "../Actores/actores.model";
 
 export default function PeliculasForm(props: peliculasFormprops) {
-  const { model, onSubmit, generoNoSeleccionado, generoSeleccionado } = props;
+  const {
+    model,
+    onSubmit,
+    generoNoSeleccionado,
+    generoSeleccionado,
+    cineNoSeleccionado,
+    cinesSeleccionados,
+    actorSeleccionado,
+  } = props;
 
+  /*Generos */
   const [selectGenero, setSelectGenero] = useState(maping(generoSeleccionado));
-
   const [noSelectGenero, setNoSelectGenero] = useState(
     maping(generoNoSeleccionado)
   );
+
+  /*Cines */
+  const [selectCine, setSelectCine] = useState(maping(cinesSeleccionados));
+  const [noSelectCine, setNoSelectCine] = useState(maping(cineNoSeleccionado));
+
+  const [actorSelect, setActorSelect] =
+    useState<actorPeliculaDTO[]>(actorSeleccionado);
 
   function maping(
     arreglo: { id: number; nombre: string }[]
@@ -33,7 +51,9 @@ export default function PeliculasForm(props: peliculasFormprops) {
       <Formik
         initialValues={model}
         onSubmit={(valores, acciones) => {
-          valores.generosIds = generoSeleccionado.map((valor) => valor.id);
+          valores.generosIds = selectGenero.map((valor) => valor.llave);
+          valores.cinesIds = selectCine.map((valor) => valor.llave);
+          valores.actores = actorSelect;
           onSubmit(valores, acciones);
         }}
         validationSchema={Yup.object({
@@ -43,7 +63,7 @@ export default function PeliculasForm(props: peliculasFormprops) {
         })}
       >
         {(formikProps) => (
-          <Form>
+          <Form className="text-amber-50">
             <FormGroupText campo="titulo" label="Titulo" />
             <FormGroupCheckBox campo="enCines" label="En cines" />
             <FormGroupText campo="trailer" label="Trailer" />
@@ -56,14 +76,69 @@ export default function PeliculasForm(props: peliculasFormprops) {
               label="Poster"
               imgUrl={model.posterURL}
             />
+            <div>
+              <label>Generos</label>
+              <MultiSelector
+                seleccionados={selectGenero}
+                noSeleccionados={noSelectGenero}
+                onChange={(seleccionados, noSeleccionados) => {
+                  setSelectGenero(seleccionados);
+                  setNoSelectGenero(noSeleccionados);
+                }}
+              />
+            </div>
 
-            <MultiSelector
-              seleccionados={selectGenero}
-              noSeleccionados={noSelectGenero}
-              onChange={(seleccionados, noSeleccionados) => {
-                setSelectGenero(seleccionados);
-                setNoSelectGenero(noSeleccionados);
+            <div>
+              <label>Cines</label>
+              <MultiSelector
+                seleccionados={selectCine}
+                noSeleccionados={noSelectCine}
+                onChange={(seleccionados, noSeleccionados) => {
+                  setSelectCine(seleccionados);
+                  setNoSelectCine(noSeleccionados);
+                }}
+              />
+            </div>
+
+            <TypeAheadActores
+              onAdd={(actores) => {
+                setActorSelect(actores);
               }}
+              onRemove={(actor) => {
+                const actores = actorSelect.filter((x) => x !== actor);
+                setActorSelect(actores);
+              }}
+              actores={actorSelect}
+              listadoUI={(actor: actorPeliculaDTO) => (
+                <>
+                  <div className="flex items-center justify-between w-[60%]  m-2 ">
+                    <img
+                      alt="imagen actor"
+                      src={actor.foto}
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        margin: "10px 10px",
+                      }}
+                    />
+                    <span>{actor.nombre}</span>
+                    <input
+                      className="bg-amber-50 m-2 p-2 h-10 rounded text-black "
+                      placeholder="Personaje"
+                      type="text"
+                      value={actor.personaje}
+                      onChange={(e) => {
+                        const index = actorSelect.findIndex(
+                          (x) => x.id === actor.id
+                        );
+                        const actores = [...actorSelect];
+                        actores[index].personaje = e.currentTarget.value;
+                        setActorSelect(actores);
+                      }}
+                    />
+                  </div>
+                </>
+              )}
             />
 
             <div className="flex pt-2">
@@ -97,4 +172,8 @@ interface peliculasFormprops {
 
   generoSeleccionado: generoDTO[];
   generoNoSeleccionado: generoDTO[];
+  cinesSeleccionados: cineDTO[];
+  cineNoSeleccionado: cineDTO[];
+
+  actorSeleccionado: actorPeliculaDTO[];
 }

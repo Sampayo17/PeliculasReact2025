@@ -5,13 +5,13 @@ export default function Button(props: ButtonProps) {
   const validateBtnType = (typeBtn?: string) => {
     if (typeBtn === "Cancel") {
       test =
-        "bg-red-500 text-white ml-3 px-4 py-2 rounded hover:bg-red-700 transition duration-200";
+        "bg-red-500 text-white ml-3 px-4 py-2 rounded hover:bg-red-700 transition duration-200 cursor-pointer";
     } else if (typeBtn === "Success") {
       test =
-        "bg-green-500 text-white ml-3 px-4 py-2 rounded hover:bg-green-700 transition duration-200";
+        "bg-green-500 text-white ml-3 px-4 py-2 rounded hover:bg-green-700 transition duration-200 cursor-pointer";
     } else if (typeBtn === "Info") {
       test =
-        "bg-blue-500 text-white px-4 py-2 m-2 rounded hover:bg-blue-700 transition duration-200";
+        "bg-blue-500 text-white px-4 py-2 m-2 rounded hover:bg-blue-700 transition duration-200 cursor-pointer";
     }
 
     return test;

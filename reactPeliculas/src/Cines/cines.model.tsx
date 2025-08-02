@@ -3,3 +3,10 @@ export interface createCineDTO {
   lat?: number;
   long?: number;
 }
+
+export interface cineDTO {
+  id: number;
+  nombre: string;
+  latitud?: number;
+  longitud?: number;
+}
